@@ -16,6 +16,12 @@ preprocessing.py: The data visualization file that handles these 3 tasks:
     # Task 2: Display 25 random images in a 5x5 grid
     # Task 3: Plot the pixel intensity histogram
 
+CNN.py: The CNN network to run and train the models
+
+TestSavedModel: To run a dataset on any of the saved models
+
+TestSingleImage: To test a single images on any saved model
+
 Dataset: Contains the cleaned dataset, 10 images of each class in training and testing folders
 
 ### Prerequisites
@@ -46,6 +52,22 @@ pip install google.colab
 2) Run the main in line 92 
 3) The Class distribution, 25 random images and pixel density of the dataset will be presented.
 
+## CNN.PY
+1) Download the data set at link https://drive.google.com/drive/folders/1WjQ7nzhBlQzX9wYjfJN-YSLTq3sSrP4O?usp=sharing
+2) The dataset have to be collected together. The program will clean and seprate the into the respective train, 
+evaluation and testing loader.
+3) Update the variable folder_path to the path where the dataset is stored
+4) The main model currently has the main model settings. 
+5) Run the program, the loss graph, accuracy graph, confusion matrix, including the performance table will be printed out
+
+## TestSavedModel.py
+1) Download any of the pretrain dataset https://drive.google.com/drive/folders/1WjQ7nzhBlQzX9wYjfJN-YSLTq3sSrP4O?usp=sharing
+2) Update the variable folder_path to the path where the dataset is stored
+3) Run the program to get the accuracy printed out
+
+## TestSingleImage.py
+1) Update the folder path to the path of the single image
+2) Run the program to get the predicated class probability
 
 ## Versioning
 

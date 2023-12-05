@@ -1,40 +1,41 @@
-import torch
-import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+import seaborn as sn
 import pandas as pd
-from torch import optim, nn
-import torch.nn.functional as F
-from torch.utils.data import DataLoader
-from torch.utils.data.dataset import Dataset
-from torch.utils.data import random_split
+import numpy as np
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.utils.data as td
-import torchvision.transforms as transforms
-import torchvision.datasets as datasets
-import os
+
+save_model_path = ''
+# To evaluuate on test dataset and get confusion matrix
 
 def testSavedModel():
-      folder_path = ""
-      BestTestACC = 0
-      history = []
-      model = torch.load(folder_path + '/trained_model.pth')
-      model.eval()  # Set the model to evaluation mode for testing
-      with torch.no_grad():
-          correct_test = 0
-          total_test = 0
-          for instances, labels in test_loader:  # Use test_loader for final testing after training
-              output = model(instances)
-              _, predicted_test = torch.max(output, 1)
-              total_test += labels.size(0)
-              correct_test += (predicted_test == labels).sum().item()
+    cnnModel = torch.load(save_model_path + '/best_model7.pth')
+    cnnModel.eval()
+    all_labels = []
+    all_predictions = []
+    with torch.no_grad():
+        for images, labels, _ in test_loader:  # Unpacking to ignore attributes
+            outputs = cnnModel(images)
+            _, predicted = torch.max(outputs.data, 1)
 
-          accuracy_test = correct_test / total_test
-          print(f"Accuracy on Test Set: {accuracy_test * 100:.2f}%")
+            all_labels.extend(labels.cpu().numpy())
+            all_predictions.extend(predicted.cpu().numpy())
 
-          if accuracy_test > BestTestACC:
-              BestTestACC = accuracy_test
-          history.append(accuracy_test)
-          print(history)
+    accuracy = np.mean(np.array(all_labels) == np.array(all_predictions))
+    print('\nTest Accuracy of the model on the test images: {:.2f} %'.format(accuracy * 100))
+
+    conf_mat = confusion_matrix(all_labels, all_predictions)
+    print('\nConfusion Matrix\n')
+    print(conf_mat, '\n')
+
+    # Constant for classes - adjust as per your dataset
+    classes = ('angry', 'bored', 'focused','neutral')  # Replace with actual class names
+    df_cm = pd.DataFrame(conf_mat, index=classes, columns=classes)
+    plt.figure(figsize=(12,7))
+    sn.heatmap(df_cm, annot=True)
+    plt.savefig('output.png')
+    print(df_cm, '\n\n')
+    print(classification_report(all_labels, all_predictions, target_names=classes))
+
 if __name__ == '__main__':
-      testSavedModel()
+    testSavedModel()

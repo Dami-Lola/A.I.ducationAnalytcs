@@ -53,21 +53,31 @@ pip install google.colab
 3) The Class distribution, 25 random images and pixel density of the dataset will be presented.
 
 ## CNN.PY
-1) Download the data set at link https://drive.google.com/drive/folders/1WjQ7nzhBlQzX9wYjfJN-YSLTq3sSrP4O?usp=sharing
+1) Download the data set at link https://drive.google.com/drive/folders/1Xez2jLl-JtV73wbujfPDdqpY_MvY-57x?usp=sharing
 2) The dataset have to be collected together. The program will clean and seprate the into the respective train, 
 evaluation and testing loader.
 3) Update the variable folder_path to the path where the dataset is stored
-4) The main model currently has the main model settings. 
-5) Run the program, the loss graph, accuracy graph, confusion matrix, including the performance table will be printed out
+4) Update the saved_model_path to where you'll have your saved model stored and also the updatedclass.csv
+5) The main model currently has the main model settings. 
+6) Run the program, every analysis from confusion matrix, to bias analysis and kflod validation will be done
 
+## CNN.ipynb
+1) Is the PyTorch format of CNN.PY
+2) You can load up the file on google colab
+3) Change the folder_path path to the folder that has the dataset 
+4) Change the saved_model_path to the path where you'll store your saved model and also the updatedclass.csv
+4) 
 ## TestSavedModel.py
-1) Download any of the pretrain dataset https://drive.google.com/drive/folders/1WjQ7nzhBlQzX9wYjfJN-YSLTq3sSrP4O?usp=sharing
-2) Update the variable folder_path to the path where the dataset is stored
-3) Run the program to get the accuracy printed out
+1) Load the trained_model.pth from the saved model path
+2) Run the program
+3) The accuracy and the confusion matrix will be displayed
 
 ## TestSingleImage.py
-1) Update the folder path to the path of the single image
+1) Update the saved model path to the path of the single image
 2) Run the program to get the predicated class probability
+3) Predicted classes will be 0-Angry 1-Bored 2-Focused 3-Neutral
+
+## 
 
 ## Versioning
 
@@ -76,6 +86,18 @@ The report was generate in LaTex
 
 ## Full Dataset
 Link to the full dataset(cleaned) used for the project (https://drive.google.com/drive/folders/1hGzH4__sQvJTWzZPC2PliNfgltPBQ8Js?usp=sharing).
+
+## New Dataset based on labeling by attributes
+https://drive.google.com/drive/folders/1DYZ6y0x1f0hrlSdHrfPSu7gUjKMZ6jVE?usp=sharing
+
+## Updated Dataset based on Bias Analysis
+https://drive.google.com/drive/folders/1Xez2jLl-JtV73wbujfPDdqpY_MvY-57x?usp=sharing
+
+
+## Link to saved model from part 2
+https://drive.google.com/file/d/1jhoAOGFPj_MoC4nvLYUn7N7T6H1skikZ/view?usp=sharing
+## Link to saved model from part 3
+https://drive.google.com/file/d/1rJ0dnsvvsCTWCu2ufrTzYQiOOKCKAkDM/view?usp=sharing
 
 ## Authors
 * **Zahra pezeshki - Data Specialist**

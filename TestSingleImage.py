@@ -2,13 +2,18 @@ import torch
 import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
+# To test on individiaul images
 
+
+save_model_path = ''
 # Load and preprocess an individual image
 def load_and_preprocess_image(image_path):
     transform = transforms.Compose([
-        transforms.Grayscale(num_output_channels=1),
-        transforms.Resize((32, 32)),
-        transforms.ToTensor(),
+    transforms.RandomHorizontalFlip(),
+    transforms.Resize((48, 48)),
+    transforms.Grayscale(),
+    transforms.ToTensor(),
+        F.normalize
     ])
 
     image = Image.open(image_path).convert('L')  # Convert to grayscale
@@ -29,10 +34,9 @@ def run_model_on_image(model, image_tensor):
 if __name__ == "__main__":
     # Load the saved model
       # model.eval()
-    folder_path =''
-    model = torch.load(folder_path + '/trained_model.pth')
+    model = torch.load(save_model_path + '/trained_model.pth')
     # Load and preprocess an individual image
-    image_path = folder_path + "/angryface.jpg"
+    image_path = save_model_path + "/focusedimge.jpg"
     image_tensor = load_and_preprocess_image(image_path)
 
     # Run the model on the individual image
